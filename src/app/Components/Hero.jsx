@@ -17,9 +17,9 @@ function Hero() {
           <a
             href="/Md Imran Hossen Resume .pdf"
             target="_blank"
-            class="relative inline-flex items-center justify-center mt-4 p-4 px-6 py-3 overflow-hidden text-white font-bold transition duration-300 ease-out border-2 border-blue-700 rounded-xl shadow-md group"
+            className="relative inline-flex items-center justify-center mt-4 p-4 px-6 py-3 overflow-hidden text-white font-bold transition duration-300 ease-out border-2 border-blue-700 rounded-xl shadow-md group"
           >
-            <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-blue-500 group-hover:translate-x-0 ease">
+            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-blue-500 group-hover:translate-x-0 ease">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -35,10 +35,10 @@ function Hero() {
                 />
               </svg>
             </span>
-            <span class="absolute flex items-center justify-center w-full h-ful transition-all duration-300 transform group-hover:translate-x-full ease">
+            <span className="absolute flex items-center justify-center w-full h-ful transition-all duration-300 transform group-hover:translate-x-full ease">
               Download Resume
             </span>
-            <span class="relative invisible">Download Resume</span>
+            <span className="relative invisible">Download Resume</span>
           </a>
         </div>
       </div>
