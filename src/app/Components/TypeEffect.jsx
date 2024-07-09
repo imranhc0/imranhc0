@@ -6,7 +6,7 @@ import React from "react";
 
 function TypeEffect() {
   return (
-    <span className="text-blue-500 dark:text-blue-500">
+    <span className="text-blue-500 text-blue-500">
       <Typewriter
         words={["Web App", "Your Dream", "Project"]}
         cursor
