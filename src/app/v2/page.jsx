@@ -62,7 +62,7 @@ export default function V2() {
   const firstRow = projectImages.slice(0, projectImages.length / 2);
   const secondRow = projectImages.slice(projectImages.length / 2);
   return (
-    <main className="h-screen w-screen flex justify-center items-center flex-wrap lg:grid lg:grid-cols-6 lg:grid-rows-8 gap-6 p-4 lg:p-16">
+    <main className="h-full lg:h-screen w-screen flex justify-center items-center flex-wrap lg:grid lg:grid-cols-6 lg:grid-rows-8 gap-6 p-4 lg:p-16">
       <Card styles={"col-span-2 row-span-6 w-fit h-fit lg:w-full lg:h-full"}>
         <h2 className="text-2xl font-bold mb-4 text-indigo-400">Experience</h2>
 
