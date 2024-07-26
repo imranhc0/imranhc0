@@ -514,7 +514,7 @@ function Tag({ text, icon }) {
   );
 }
 
-export function Marquee({
+function Marquee({
   className,
   reverse,
   pauseOnHover = false,
