@@ -15,6 +15,8 @@ module.exports = {
       animation: {
         grid: "grid 15s linear infinite",
         orbit: "orbit calc(var(--duration)*1s) linear infinite",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
       keyframes: {
         grid: {
@@ -30,6 +32,15 @@ module.exports = {
             transform:
               "rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
           },
+        },
+
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
         },
       },
     },

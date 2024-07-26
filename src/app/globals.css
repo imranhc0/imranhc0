@@ -4,15 +4,15 @@
 
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --background-start-rgb: 5,5,5;
+  --background-end-rgb: 5,5,5;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 5,5,5;
+    --background-end-rgb: 5,5,5;
   }
 }
 
@@ -30,4 +30,20 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+.marquee-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 5s linear infinite;
 }
