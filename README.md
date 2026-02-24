@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Md Imran Hossen Portfolio (Next.js + Supabase)
 
-## Getting Started
+Custom portfolio platform with:
+- Public portfolio site
+- Projects + blog publishing
+- Separate admin dashboard
+- Supabase-backed content and Supabase-authenticated admin login
 
-First, run the development server:
+## Tech
+
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS v4
+- Supabase (Postgres + Auth)
+
+## Run Locally
+
+1. Install dependencies
+
+```bash
+npm install
+```
+
+2. Create env file
+
+```bash
+cp .env.example .env.local
+```
+
+3. Add env values to `.env.local`
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+4. Start app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Step-by-Step Supabase Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create a Supabase project
+- Go to Supabase dashboard.
+- Create a new project and wait for database initialization.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Get API keys
+- Open `Project Settings -> API`.
+- Copy:
+  - Project URL
+  - `anon` public key
+  - `service_role` key
 
-## Learn More
+3. Configure local environment
+- Put keys in `.env.local`:
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `SUPABASE_SERVICE_ROLE_KEY`
 
-To learn more about Next.js, take a look at the following resources:
+4. Create database tables, policies, and seed data
+- Open Supabase `SQL Editor`.
+- Run [`supabase/schema.sql`](/Users/imran/Projects/imranhc0/supabase/schema.sql).
+- This creates:
+  - `projects`
+  - `blog_posts`
+  - `admin_users`
+  - `is_admin()` function
+  - RLS policies
+  - initial seed content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Enable email/password sign-in
+- Open `Authentication -> Providers -> Email`.
+- Enable Email provider (password login).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+6. Create an admin auth user
+- Open `Authentication -> Users`.
+- Add user with email/password (or sign up once from client).
 
-## Deploy on Vercel
+7. Allow that user in dashboard access list
+- In SQL Editor, run:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sql
+insert into public.admin_users (email)
+values ('your-admin-email@example.com')
+on conflict (email) do nothing;
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+8. Sign in to admin dashboard
+- Visit `http://localhost:3000/admin/login`.
+- Use the same Supabase email/password from step 6.
+
+9. Publish content
+- Manage content from:
+  - `/admin/projects`
+  - `/admin/blog`
+- Mark items `Published` to show them publicly.
+
+## Notes
+
+- Public pages only show rows where `published = true`.
+- Admin login is validated through Supabase Auth + `admin_users` authorization check.
+- Write actions use server-side key (`SUPABASE_SERVICE_ROLE_KEY`) in this implementation.
+- If Supabase keys are missing, public pages fall back to local seeded content.
