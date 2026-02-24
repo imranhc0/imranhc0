@@ -1,26 +1,180 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #111a30;
+  --muted: #5d6783;
+  --paper: #f7f2e8;
+  --paper-soft: #fffaf2;
+  --surface-soft: #e9f3ff;
+  --line: #111a30;
+  --accent: #ff5277;
+  --accent-b: #5bc3ff;
+  --accent-c: #ffdd75;
+  --font-display:
+    "Rockwell", "Avenir Next Condensed", "Trebuchet MS", sans-serif;
+  --font-body: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Consolas", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+::selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.app-body {
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(255, 82, 119, 0.18) 0%,
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(91, 195, 255, 0.25) 0%,
+      transparent 33%
+    ),
+    radial-gradient(
+      circle at 50% 110%,
+      rgba(255, 221, 117, 0.28) 0%,
+      transparent 38%
+    ),
+    linear-gradient(172deg, #f6f2e8 0%, #fffaf2 52%, #edf5ff 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.03em;
+}
+
+a {
+  /* color: white; */
+  text-decoration: none;
+}
+
+.site-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(17, 26, 48, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 26, 48, 0.08) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.28), transparent 88%);
+  z-index: -1;
+}
+
+.section-slab {
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  background: var(--paper-soft);
+  box-shadow: 8px 8px 0 0 var(--ink);
+}
+
+.tag-chip {
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: white;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+}
+
+.cta-dark {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: white;
+  padding: 0.6rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  font-weight: 800;
+  transition: transform 200ms ease;
+}
+
+.cta-dark:hover {
+  transform: translate(-2px, -2px);
+}
+
+.cta-light {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: white;
+  color: var(--ink);
+  padding: 0.6rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  font-weight: 800;
+  transition: transform 200ms ease;
+}
+
+.cta-light:hover {
+  transform: translate(-2px, -2px);
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.65s ease both;
+}
+
+.fade-in-up.delay-1 {
+  animation-delay: 0.12s;
+}
+
+.fade-in-up.delay-2 {
+  animation-delay: 0.24s;
+}
+
+.markdown-content {
+  line-height: 1.86;
+  color: var(--muted);
+}
+
+.markdown-content p {
+  margin: 0 0 1rem;
+}
+
+.markdown-content h2,
+.markdown-content h3 {
+  margin-top: 1.7rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
