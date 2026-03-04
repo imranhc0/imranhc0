@@ -10,12 +10,18 @@ import {
   reference,
   skillGroups,
 } from "@/lib/site-data";
-import { getPublishedPosts, getPublishedProjects, hasPublicSupabaseConfig } from "@/lib/supabase";
+import {
+  getPublishedPosts,
+  getPublishedProjects,
+  getPublishedResume,
+  hasPublicSupabaseConfig,
+} from "@/lib/supabase";
 
 export default async function Home() {
-  const [projects, posts] = await Promise.all([
+  const [projects, posts, resume] = await Promise.all([
     getPublishedProjects({ featuredOnly: true, limit: 3 }),
     getPublishedPosts(3),
+    getPublishedResume(),
   ]);
 
   return (
@@ -40,6 +46,16 @@ export default async function Home() {
                 <a href={profile.linkedin} target="_blank" rel="noreferrer" className="cta-light">
                   LinkedIn
                 </a>
+                {resume?.publicUrl ? (
+                  <a
+                    href={`${resume.publicUrl}?download=${encodeURIComponent(resume.fileName)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cta-light"
+                  >
+                    Download Resume
+                  </a>
+                ) : null}
                 <Link href="/projects" className="cta-light">
                   Explore Work
                 </Link>
