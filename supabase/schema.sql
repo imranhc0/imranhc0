@@ -64,6 +64,15 @@ create table if not exists public.blog_posts (
   updated_at timestamptz not null default timezone('utc'::text, now())
 );
 
+create table if not exists public.resume_settings (
+  id integer primary key default 1 check (id = 1),
+  file_name text not null,
+  file_path text not null,
+  public_url text not null,
+  created_at timestamptz not null default timezone('utc'::text, now()),
+  updated_at timestamptz not null default timezone('utc'::text, now())
+);
+
 drop trigger if exists set_projects_updated_at on public.projects;
 create trigger set_projects_updated_at
 before update on public.projects
@@ -76,8 +85,15 @@ before update on public.blog_posts
 for each row
 execute function public.set_updated_at();
 
+drop trigger if exists set_resume_settings_updated_at on public.resume_settings;
+create trigger set_resume_settings_updated_at
+before update on public.resume_settings
+for each row
+execute function public.set_updated_at();
+
 alter table public.projects enable row level security;
 alter table public.blog_posts enable row level security;
+alter table public.resume_settings enable row level security;
 
 -- Public visitors can only read published content.
 drop policy if exists projects_public_read on public.projects;
@@ -91,6 +107,12 @@ create policy blog_posts_public_read
 on public.blog_posts
 for select
 using (published = true);
+
+drop policy if exists resume_settings_public_read on public.resume_settings;
+create policy resume_settings_public_read
+on public.resume_settings
+for select
+using (true);
 
 -- Optional: if you later use Supabase Auth for dashboard access,
 -- add your admin emails to admin_users to allow direct writes.
@@ -109,6 +131,34 @@ for all
 to authenticated
 using (public.is_admin())
 with check (public.is_admin());
+
+drop policy if exists resume_settings_admin_all on public.resume_settings;
+create policy resume_settings_admin_all
+on public.resume_settings
+for all
+to authenticated
+using (public.is_admin())
+with check (public.is_admin());
+
+insert into storage.buckets (id, name, public)
+values ('resumes', 'resumes', true)
+on conflict (id) do update
+set public = excluded.public;
+
+drop policy if exists resume_files_public_read on storage.objects;
+create policy resume_files_public_read
+on storage.objects
+for select
+to anon, authenticated
+using (bucket_id = 'resumes');
+
+drop policy if exists resume_files_admin_all on storage.objects;
+create policy resume_files_admin_all
+on storage.objects
+for all
+to authenticated
+using (bucket_id = 'resumes' and public.is_admin())
+with check (bucket_id = 'resumes' and public.is_admin());
 
 insert into public.admin_users (email)
 values ('imranhosein.cse@gmail.com')
