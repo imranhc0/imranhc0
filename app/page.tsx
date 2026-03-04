@@ -51,9 +51,9 @@ export default async function Home() {
                     href={`${resume.publicUrl}?download=${encodeURIComponent(resume.fileName)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="cta-light"
+                    className="cta-resume"
                   >
-                    Download Resume
+                    <span>Download Resume</span>
                   </a>
                 ) : null}
                 <Link href="/projects" className="cta-light">
