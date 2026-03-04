@@ -1,5 +1,6 @@
 import { uploadResumeAction } from "@/app/admin/actions";
 import { FlashBanner } from "@/components/admin/flash-banner";
+import { SubmitButton } from "@/components/ui/submit-button";
 import { formatDate } from "@/lib/format";
 import { getAdminResume } from "@/lib/supabase";
 
@@ -41,9 +42,12 @@ export default async function AdminResumePage({ searchParams }: AdminResumePageP
             />
           </label>
 
-          <button className="rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-black">
+          <SubmitButton
+            pendingLabel="Uploading..."
+            className="rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-black"
+          >
             Upload Resume
-          </button>
+          </SubmitButton>
         </form>
       </section>
 
