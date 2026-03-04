@@ -1,4 +1,5 @@
 import type { Project } from "@/lib/types";
+import { SubmitButton } from "@/components/ui/submit-button";
 
 interface ProjectFormProps {
   action: (formData: FormData) => void | Promise<void>;
@@ -121,9 +122,12 @@ export function ProjectForm({ action, submitLabel, initialProject }: ProjectForm
         </label>
       </div>
 
-      <button className="rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-black">
+      <SubmitButton
+        pendingLabel="Saving..."
+        className="rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-black"
+      >
         {submitLabel}
-      </button>
+      </SubmitButton>
     </form>
   );
 }
