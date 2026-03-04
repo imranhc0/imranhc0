@@ -30,6 +30,15 @@ export interface BlogPost {
   updatedAt: string;
 }
 
+export interface ResumeAsset {
+  id: number;
+  fileName: string;
+  filePath: string;
+  publicUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface SkillGroup {
   title: string;
   items: string[];
