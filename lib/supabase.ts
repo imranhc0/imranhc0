@@ -1,12 +1,15 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { fallbackPosts, fallbackProjects } from "@/lib/site-data";
-import type { BlogPost, Project } from "@/lib/types";
+import type { BlogPost, Project, ResumeAsset } from "@/lib/types";
 
 const projectColumns =
   "id,title,slug,short_description,description,stack,repo_url,live_url,cover_image,featured,published,published_at,sort_order,created_at,updated_at";
 
 const postColumns =
   "id,title,slug,excerpt,content,tags,cover_image,published,published_at,created_at,updated_at";
+
+const resumeColumns = "id,file_name,file_path,public_url,created_at,updated_at";
+const resumeBucket = process.env.SUPABASE_RESUME_BUCKET ?? "resumes";
 
 interface ProjectRow {
   id: string;
@@ -40,6 +43,15 @@ interface BlogPostRow {
   updated_at: string;
 }
 
+interface ResumeRow {
+  id: number;
+  file_name: string | null;
+  file_path: string | null;
+  public_url: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface ProjectInput {
   id?: string;
   title: string;
@@ -66,6 +78,12 @@ export interface BlogPostInput {
   coverImage: string | null;
   published: boolean;
   publishedAt: string | null;
+}
+
+export interface ResumeUploadInput {
+  fileName: string;
+  contentType: string;
+  bytes: Uint8Array;
 }
 
 function isPublicConfigured(): boolean {
@@ -139,6 +157,17 @@ function mapPost(row: BlogPostRow): BlogPost {
     coverImage: row.cover_image,
     published: row.published ?? false,
     publishedAt: row.published_at,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  };
+}
+
+function mapResume(row: ResumeRow): ResumeAsset {
+  return {
+    id: row.id,
+    fileName: row.file_name ?? "resume",
+    filePath: row.file_path ?? "",
+    publicUrl: row.public_url ?? "",
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -257,6 +286,22 @@ export async function getPublishedPostBySlug(slug: string): Promise<BlogPost | n
   return mapPost(data as BlogPostRow);
 }
 
+export async function getPublishedResume(): Promise<ResumeAsset | null> {
+  const client = getPublicClient();
+
+  if (!client) {
+    return null;
+  }
+
+  const { data, error } = await client.from("resume_settings").select(resumeColumns).eq("id", 1).maybeSingle();
+
+  if (error || !data) {
+    return null;
+  }
+
+  return mapResume(data as ResumeRow);
+}
+
 export async function getAdminProjects(): Promise<Project[]> {
   const client = getServiceClient();
 
@@ -327,6 +372,22 @@ export async function getAdminPostById(id: string): Promise<BlogPost | null> {
   return mapPost(data as BlogPostRow);
 }
 
+export async function getAdminResume(): Promise<ResumeAsset | null> {
+  const client = getServiceClient();
+
+  if (!client) {
+    return null;
+  }
+
+  const { data, error } = await client.from("resume_settings").select(resumeColumns).eq("id", 1).maybeSingle();
+
+  if (error || !data) {
+    return null;
+  }
+
+  return mapResume(data as ResumeRow);
+}
+
 export async function saveProject(input: ProjectInput): Promise<{ error: string | null }> {
   const client = getServiceClient();
 
@@ -385,6 +446,43 @@ export async function savePost(input: BlogPostInput): Promise<{ error: string | 
   }
 
   const { error } = await client.from("blog_posts").insert(payload);
+
+  return { error: error?.message ?? null };
+}
+
+export async function saveResume(input: ResumeUploadInput): Promise<{ error: string | null }> {
+  const client = getServiceClient();
+
+  if (!client) {
+    return { error: "Supabase service role is not configured." };
+  }
+
+  const fileName = input.fileName.trim() || "resume";
+  const filePath = "resume/latest";
+
+  const { error: uploadError } = await client.storage.from(resumeBucket).upload(filePath, input.bytes, {
+    contentType: input.contentType || "application/octet-stream",
+    cacheControl: "3600",
+    upsert: true,
+  });
+
+  if (uploadError) {
+    return { error: uploadError.message };
+  }
+
+  const { data: publicData } = client.storage.from(resumeBucket).getPublicUrl(filePath);
+
+  const { error } = await client
+    .from("resume_settings")
+    .upsert(
+      {
+        id: 1,
+        file_name: fileName,
+        file_path: filePath,
+        public_url: publicData.publicUrl,
+      },
+      { onConflict: "id" },
+    );
 
   return { error: error?.message ?? null };
 }
