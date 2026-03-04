@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { logoutAction } from "@/app/admin/actions";
+import { SubmitButton } from "@/components/ui/submit-button";
 import { requireAdminSession } from "@/lib/admin-session";
 
 export const dynamic = "force-dynamic";
@@ -37,9 +38,12 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
             ))}
 
             <form action={logoutAction}>
-              <button className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-red-700">
+              <SubmitButton
+                pendingLabel="Logging out..."
+                className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-red-700"
+              >
                 Logout
-              </button>
+              </SubmitButton>
             </form>
           </div>
         </div>
