@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { deleteProjectAction } from "@/app/admin/actions";
 import { FlashBanner } from "@/components/admin/flash-banner";
+import { SubmitButton } from "@/components/ui/submit-button";
 import { formatDate, truncate } from "@/lib/format";
 import { getAdminProjects } from "@/lib/supabase";
 
@@ -62,9 +63,12 @@ export default async function AdminProjectsPage({ searchParams }: AdminProjectsP
                       </Link>
                       <form action={deleteProjectAction}>
                         <input type="hidden" name="id" value={project.id} />
-                        <button className="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-red-700">
+                        <SubmitButton
+                          pendingLabel="Deleting..."
+                          className="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-red-700"
+                        >
                           Delete
-                        </button>
+                        </SubmitButton>
                       </form>
                     </div>
                   </td>
