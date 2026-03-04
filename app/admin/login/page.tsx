@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { loginAction } from "@/app/admin/actions";
 import { FlashBanner } from "@/components/admin/flash-banner";
+import { SubmitButton } from "@/components/ui/submit-button";
 
 interface AdminLoginPageProps {
   searchParams: Promise<{ error?: string }>;
@@ -54,9 +55,12 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
             />
           </label>
 
-          <button className="w-full rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-black">
+          <SubmitButton
+            pendingLabel="Signing in..."
+            className="w-full rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-black"
+          >
             Continue
-          </button>
+          </SubmitButton>
         </form>
 
         <Link href="/" className="mt-5 inline-flex text-sm font-semibold text-[var(--muted)] underline underline-offset-4">
