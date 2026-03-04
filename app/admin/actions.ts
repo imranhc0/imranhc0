@@ -8,7 +8,15 @@ import {
   requireAdminSession,
 } from "@/lib/admin-session";
 import { createSlug, splitCommaValues } from "@/lib/format";
-import { removePost, removeProject, savePost, saveProject } from "@/lib/supabase";
+import { removePost, removeProject, savePost, saveProject, saveResume } from "@/lib/supabase";
+
+const MAX_RESUME_SIZE_BYTES = 6 * 1024 * 1024;
+const allowedResumeMimeTypes = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
+const allowedResumeExtensions = [".pdf", ".doc", ".docx"];
 
 function readText(value: FormDataEntryValue | null): string {
   return typeof value === "string" ? value.trim() : "";
@@ -21,6 +29,11 @@ function readChecked(formData: FormData, key: string): boolean {
 function withQuery(path: string, key: "error" | "success", value: string): string {
   const query = new URLSearchParams({ [key]: value });
   return `${path}?${query.toString()}`;
+}
+
+function hasValidResumeExtension(fileName: string): boolean {
+  const lower = fileName.trim().toLowerCase();
+  return allowedResumeExtensions.some((extension) => lower.endsWith(extension));
 }
 
 export async function loginAction(formData: FormData): Promise<void> {
@@ -179,4 +192,42 @@ export async function deletePostAction(formData: FormData): Promise<void> {
   revalidatePath("/admin/blog");
 
   redirect(withQuery("/admin/blog", "success", "Post deleted"));
+}
+
+export async function uploadResumeAction(formData: FormData): Promise<void> {
+  await requireAdminSession();
+
+  const file = formData.get("resume");
+
+  if (!(file instanceof File) || file.size === 0) {
+    redirect(withQuery("/admin/resume", "error", "Please choose a resume file to upload."));
+  }
+
+  const isAllowedMimeType = allowedResumeMimeTypes.has(file.type);
+  const isAllowedExtension = hasValidResumeExtension(file.name);
+
+  if (!isAllowedMimeType && !isAllowedExtension) {
+    redirect(withQuery("/admin/resume", "error", "Only PDF, DOC, and DOCX files are allowed."));
+  }
+
+  if (file.size > MAX_RESUME_SIZE_BYTES) {
+    redirect(withQuery("/admin/resume", "error", "File is too large. Maximum size is 6MB."));
+  }
+
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const result = await saveResume({
+    fileName: file.name,
+    contentType: file.type,
+    bytes,
+  });
+
+  if (result.error) {
+    redirect(withQuery("/admin/resume", "error", result.error));
+  }
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  revalidatePath("/admin/resume");
+
+  redirect(withQuery("/admin/resume", "success", "Resume uploaded"));
 }
