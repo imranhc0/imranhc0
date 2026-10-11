@@ -1,224 +1,309 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { MainNav } from "@/components/site/main-nav";
-import { PostCard } from "@/components/site/post-card";
-import { ProjectCard } from "@/components/site/project-card";
+import { DnsFigure } from "@/components/dns-figure";
+import { PostList } from "@/components/post-list";
+import { ProjectList } from "@/components/project-list";
+import { Section } from "@/components/section";
+import { getPosts, getProjects } from "@/lib/content";
+import { formatRange, pad } from "@/lib/format";
 import {
   education,
-  experiences,
-  highlights,
+  experience,
+  hasResume,
+  languages,
+  offTheClock,
+  principles,
   profile,
-  reference,
-  skillGroups,
-} from "@/lib/site-data";
-import {
-  getPublishedPosts,
-  getPublishedProjects,
-  getPublishedResume,
-  hasPublicSupabaseConfig,
-} from "@/lib/supabase";
+  resumePath,
+  siteUrl,
+  stack,
+  tenure,
+} from "@/lib/profile";
 
-export default async function Home() {
-  const [projects, posts, resume] = await Promise.all([
-    getPublishedProjects({ featuredOnly: true, limit: 3 }),
-    getPublishedPosts(3),
-    getPublishedResume(),
-  ]);
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": [{ url: "/rss.xml", title: `${profile.name}: Writing` }] },
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.currentTitle,
+  worksFor: { "@type": "Organization", name: profile.company },
+  url: siteUrl,
+  email: `mailto:${profile.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
+  sameAs: [profile.github, profile.linkedin],
+  knowsAbout: ["Microservices", "Event-driven architecture", "Cybersecurity SaaS", "TypeScript", "Python"],
+};
+
+export default function Home() {
+  const projects = getProjects();
+  const featured = projects.filter((project) => project.featured);
+  const posts = getPosts().slice(0, 3);
+  const resume = hasResume();
+
+  const facts = [
+    ["Role", `${profile.currentTitle}, ${profile.company}`],
+    ["Experience", `${tenure(profile.careerStart)}, promoted twice`],
+    ["Focus", "Microservices, event-driven systems, security SaaS"],
+    ["Availability", "Relocation to Europe, or remote with CET overlap"],
+  ];
 
   return (
-    <main className="site-shell pb-20">
-      <section className="mx-auto w-full max-w-6xl px-4 pt-6 md:px-6 md:pt-8">
-        <MainNav />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+      />
 
-        <div className="fade-in-up section-slab mt-8 overflow-hidden p-6 md:p-9">
-          <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
-            <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[var(--accent)]">Full-Stack Engineering Portfolio</p>
-              <h1 className="mt-3 text-4xl font-black leading-[0.88] md:text-6xl">
-                {profile.fullName}
-                <span className="block text-[var(--accent-b)]">{profile.role}</span>
-              </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--muted)]">{profile.summary}</p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                <a href={`mailto:${profile.email}`} className="cta-dark">
-                  Contact Me
+      {/* Hero */}
+      <section className="wrap pt-12 pb-14 md:pt-20 md:pb-20">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-6">
+          <div className="lg:col-span-7">
+            <p className="t-meta">
+              {profile.currentTitle} · {profile.location}
+            </p>
+            <h1 className="t-display mt-6">
+              Md Imran
+              <br />
+              Hossen<span className="text-accent">.</span>
+            </h1>
+            <p className="t-lede mt-8 max-w-[44ch] text-ink-2">{profile.headline}</p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a href={`mailto:${profile.email}`} className="btn btn-primary">
+                Email me <span className="arrow">→</span>
+              </a>
+              <a href={profile.linkedin} className="btn btn-ghost">
+                LinkedIn
+              </a>
+              <a href={profile.github} className="btn btn-ghost">
+                GitHub
+              </a>
+              {resume ? (
+                <a href={resumePath} className="btn btn-ghost">
+                  Download CV <span className="t-meta text-current">PDF</span>
                 </a>
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="cta-light">
+              ) : null}
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <DnsFigure />
+          </div>
+        </div>
+      </section>
+
+      {/* At a glance */}
+      <section className="wrap mb-24 md:mb-32" aria-label="At a glance">
+        <dl className="grid border-t border-ink sm:grid-cols-2 lg:grid-cols-4">
+          {facts.map(([label, value]) => (
+            <div
+              key={label}
+              className="border-b border-line py-5 sm:pr-6 lg:border-b-0 lg:border-l lg:px-5 lg:first:border-l-0 lg:first:pl-0"
+            >
+              <dt className="t-meta">{label}</dt>
+              <dd className="mt-2 leading-snug">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <Section id="profile" index="01" title="Profile">
+        <div className="t-lede max-w-[54ch] space-y-5">
+          <p>
+            I joined {profile.company}, a cybersecurity SaaS company, as a frontend developer in
+            March 2023. I moved into backend and microservices work as a software engineer with the
+            Tokyo office, and since August 2026 I have led an engineering team in Dhaka while staying
+            hands-on.
+          </p>
+          <p className="text-ink-2">
+            Most of my work sits where security products get hard: API-first services in Python and
+            Node.js, event-driven pipelines on Kafka, WebSockets and Celery, and data models that
+            hold up under high-volume, time-series threat data.
+          </p>
+        </div>
+        <ol className="mt-14 grid border-t border-line md:grid-cols-3">
+          {principles.map((principle, index) => (
+            <li
+              key={principle.title}
+              className="border-b border-line py-6 md:border-b-0 md:pr-6 md:not-first:border-l md:not-first:pl-6"
+            >
+              <p className="t-meta">{pad(index)}</p>
+              <h3 className="t-heading mt-3">{principle.title}</h3>
+              <p className="mt-2 text-ink-2">{principle.body}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section id="experience" index="02" title="Experience">
+        {experience.map((employer) => (
+          <article key={employer.company}>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+              <h3 className="t-headline">{employer.company}</h3>
+              <p className="t-meta">
+                {employer.sector} · {formatRange(employer.start, null)} · {tenure(employer.start)}
+              </p>
+            </div>
+            <ol className="mt-10 border-t border-line">
+              {employer.roles.map((role, index) => (
+                <li
+                  key={role.title}
+                  className="grid gap-x-6 gap-y-4 border-b border-line py-8 sm:grid-cols-[11rem_1fr]"
+                >
+                  <div>
+                    <p className="t-meta text-ink">{formatRange(role.start, role.end)}</p>
+                    <p className="t-meta">
+                      {tenure(role.start, role.end ? new Date(role.end) : undefined)}
+                    </p>
+                    <p className="t-meta mt-1">
+                      {role.location.split(" · ").map((part) => (
+                        <span key={part} className="block">
+                          {part}
+                        </span>
+                      ))}
+                    </p>
+                    {index < employer.roles.length - 1 ? (
+                      <p className="t-meta mt-3 text-accent">↑ Promoted</p>
+                    ) : null}
+                  </div>
+                  <div>
+                    <h4 className="t-heading">{role.title}</h4>
+                    <dl className="mt-5 grid gap-y-3">
+                      {role.highlights.map((highlight) => (
+                        <div key={highlight.area} className="grid gap-x-4 gap-y-0.5 sm:grid-cols-[8rem_1fr]">
+                          <dt className="t-meta pt-[0.2rem]">{highlight.area}</dt>
+                          <dd className="text-ink-2">{highlight.text}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </article>
+        ))}
+      </Section>
+
+      <Section id="work" index="03" title="Selected work">
+        <ProjectList projects={featured} />
+        {projects.length > featured.length ? (
+          <Link href="/projects" className="group t-meta mt-6 inline-flex gap-2 text-ink hover:text-accent">
+            All projects <span className="arrow">→</span>
+          </Link>
+        ) : null}
+      </Section>
+
+      <Section id="stack" index="04" title="Stack">
+        <dl className="[&>div:first-child]:pt-0">
+          {stack.map((group) => (
+            <div
+              key={group.layer}
+              className="grid gap-x-6 gap-y-2 border-b border-line py-4 sm:grid-cols-[9.5rem_1fr]"
+            >
+              <dt className="t-meta pt-1">{group.layer}</dt>
+              <dd>
+                <ul className="flex flex-wrap gap-x-5 gap-y-1">
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      {posts.length > 0 ? (
+        <Section id="writing" index="05" title="Writing">
+          <PostList posts={posts} />
+          <Link href="/blog" className="group t-meta mt-6 inline-flex gap-2 text-ink hover:text-accent">
+            All writing <span className="arrow">→</span>
+          </Link>
+        </Section>
+      ) : null}
+
+      <Section id="education" index="06" title="Education">
+        <ul className="[&>li:first-child]:pt-0">
+          {education.map((item) => (
+            <li
+              key={item.program}
+              className="grid gap-x-6 gap-y-1 border-b border-line py-5 sm:grid-cols-[1fr_auto] sm:items-baseline"
+            >
+              <div>
+                <h3 className="t-heading">{item.program}</h3>
+                <p className="mt-1 text-ink-2">{item.institution}</p>
+              </div>
+              <p className="t-meta">{item.period}</p>
+            </li>
+          ))}
+        </ul>
+        <dl className="mt-10 grid gap-6 sm:grid-cols-2">
+          <div>
+            <dt className="t-meta">Languages</dt>
+            <dd className="mt-1.5">{languages}</dd>
+          </div>
+          <div>
+            <dt className="t-meta">Off the clock</dt>
+            <dd className="mt-1.5">{offTheClock}</dd>
+          </div>
+        </dl>
+      </Section>
+
+      {/* Contact */}
+      <section id="contact" aria-labelledby="contact-title" className="bg-accent-surface text-on-accent">
+        <div className="wrap grid gap-14 py-20 md:py-28 lg:grid-cols-12 lg:gap-6">
+          <div className="lg:col-span-8">
+            <p className="t-meta text-on-accent/75">07 · Contact</p>
+            <h2 id="contact-title" className="t-page mt-4">
+              Hiring in Europe?
+              <br />
+              Let&rsquo;s talk.
+            </h2>
+            <a
+              href={`mailto:${profile.email}`}
+              className="mt-10 inline-block text-[clamp(1.15rem,0.7rem+1.9vw,2.25rem)] font-medium break-all underline decoration-on-accent/40 decoration-1 underline-offset-[0.25em] transition-colors hover:decoration-on-accent"
+            >
+              {profile.email}
+            </a>
+          </div>
+          <dl className="grid content-end gap-5 lg:col-span-4">
+            <div>
+              <dt className="t-meta text-on-accent/75">Based in</dt>
+              <dd className="mt-1">
+                {profile.location} ({profile.utcOffset})
+              </dd>
+            </div>
+            <div>
+              <dt className="t-meta text-on-accent/75">Availability</dt>
+              <dd className="mt-1">{profile.availability}</dd>
+            </div>
+            <div>
+              <dt className="t-meta text-on-accent/75">Elsewhere</dt>
+              <dd className="mt-1 flex flex-wrap gap-x-4">
+                <a href={profile.linkedin} className="underline decoration-on-accent/40 underline-offset-4 hover:decoration-on-accent">
                   LinkedIn
                 </a>
-                {resume?.publicUrl ? (
-                  <a
-                    href={`${resume.publicUrl}?download=${encodeURIComponent(resume.fileName)}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="cta-resume"
-                  >
-                    <span>Download Resume</span>
+                <a href={profile.github} className="underline decoration-on-accent/40 underline-offset-4 hover:decoration-on-accent">
+                  GitHub
+                </a>
+                {resume ? (
+                  <a href={resumePath} className="underline decoration-on-accent/40 underline-offset-4 hover:decoration-on-accent">
+                    CV (PDF)
                   </a>
                 ) : null}
-                <Link href="/projects" className="cta-light">
-                  Explore Work
-                </Link>
-              </div>
+              </dd>
             </div>
-
-            <aside className="relative rounded-[18px] border-2 border-[var(--ink)] bg-white p-5">
-              <div className="absolute -right-5 -top-5 h-14 w-14 rotate-12 border-2 border-[var(--ink)] bg-[var(--accent-c)]" />
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">Snapshot</p>
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {highlights.map((item) => (
-                  <article key={item.label} className="rounded-xl border border-[var(--ink)] bg-[var(--paper)] p-3">
-                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-[var(--muted)]">{item.label}</p>
-                    <p className="mt-1 text-xl font-black text-[var(--ink)]">{item.value}</p>
-                  </article>
-                ))}
-              </div>
-
-              <div className="mt-4 rounded-xl border border-[var(--ink)] bg-[var(--surface-soft)] p-3 text-sm font-semibold text-[var(--ink)]">
-                <p>{profile.location}</p>
-                <p className="mt-1">{profile.phone}</p>
-                <p className="mt-1">{profile.username}</p>
-              </div>
-            </aside>
-          </div>
-        </div>
-
-        {!hasPublicSupabaseConfig() ? (
-          <p className="mt-4 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-700">
-            Supabase keys are missing, so the site is showing built-in fallback content.
-          </p>
-        ) : null}
-      </section>
-
-      <section id="experience" className="mx-auto mt-14 w-full max-w-6xl px-4 md:px-6">
-        <div className="grid gap-6 md:grid-cols-[1.25fr_0.75fr]">
-          <div className="section-slab fade-in-up delay-1 p-6 md:p-8">
-            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--accent)]">Experience</p>
-            <h2 className="mt-2 text-3xl font-black md:text-4xl">Production-Grade Delivery</h2>
-
-            <div className="mt-6 space-y-5">
-              {experiences.map((item) => (
-                <article key={item.company} className="rounded-2xl border-2 border-[var(--ink)] bg-white p-5">
-                  <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[var(--muted)]">{item.timeframe}</p>
-                  <h3 className="mt-2 text-2xl font-black text-[var(--ink)]">{item.role}</h3>
-                  <p className="text-sm font-semibold text-[var(--accent-b)]">{item.company} · {item.location}</p>
-                  <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-                    {item.highlights.map((point) => (
-                      <li key={point} className="flex gap-2">
-                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="section-slab fade-in-up delay-2 p-6">
-            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--accent)]">Core Stack</p>
-            <h2 className="mt-2 text-3xl font-black">Tooling Depth</h2>
-
-            <div className="mt-5 space-y-4">
-              {skillGroups.map((group) => (
-                <article key={group.title} className="rounded-2xl border-2 border-[var(--ink)] bg-white p-4">
-                  <h3 className="text-lg font-black">{group.title}</h3>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {group.items.map((skill) => (
-                      <span key={skill} className="tag-chip">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto mt-14 w-full max-w-6xl px-4 md:px-6">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--accent)]">Projects</p>
-            <h2 className="mt-2 text-3xl font-black md:text-4xl">Featured Build Stories</h2>
-          </div>
-          <Link href="/projects" className="cta-light">
-            All Projects
-          </Link>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto mt-14 w-full max-w-6xl px-4 md:px-6">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--accent)]">Writing</p>
-            <h2 className="mt-2 text-3xl font-black md:text-4xl">Technical Notes & Lessons</h2>
-          </div>
-          <Link href="/blog" className="cta-light">
-            All Posts
-          </Link>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
-      </section>
-
-      <section id="contact" className="mx-auto mt-14 w-full max-w-6xl px-4 md:px-6">
-        <div className="section-slab p-6 md:p-8">
-          <div className="grid gap-7 md:grid-cols-2">
             <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--accent)]">Education</p>
-              <h2 className="mt-2 text-3xl font-black md:text-4xl">Academic Foundation</h2>
-              <div className="mt-5 space-y-3">
-                {education.map((item) => (
-                  <article key={item.program} className="rounded-2xl border-2 border-[var(--ink)] bg-white p-4">
-                    <p className="text-[10px] font-black uppercase tracking-[0.13em] text-[var(--muted)]">{item.timeframe}</p>
-                    <h3 className="mt-1 text-lg font-black">{item.program}</h3>
-                    <p className="text-sm text-[var(--muted)]">{item.institution}</p>
-                    <p className="mt-1 text-sm font-bold text-[var(--accent-b)]">{item.details}</p>
-                  </article>
-                ))}
-              </div>
+              <dt className="t-meta text-on-accent/75">References</dt>
+              <dd className="mt-1">Available on request</dd>
             </div>
-
-            <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[var(--accent)]">Contact</p>
-              <h2 className="mt-2 text-3xl font-black md:text-4xl">Let&apos;s Build Something Hard</h2>
-              <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">{profile.tagline}</p>
-
-              <div className="mt-5 rounded-2xl border-2 border-[var(--ink)] bg-white p-4 text-sm">
-                <p>
-                  Email: <a className="font-black" href={`mailto:${profile.email}`}>{profile.email}</a>
-                </p>
-                <p className="mt-2">
-                  LinkedIn: <a className="font-black" href={profile.linkedin} target="_blank" rel="noreferrer">imranhc0</a>
-                </p>
-                <p className="mt-2">
-                  Phone: <span className="font-black">{profile.phone}</span>
-                </p>
-              </div>
-
-              <div className="mt-4 rounded-2xl border-2 border-[var(--ink)] bg-[var(--surface-soft)] p-4">
-                <p className="text-[11px] font-black uppercase tracking-[0.13em] text-[var(--muted)]">Reference</p>
-                <p className="mt-1 text-lg font-black">{reference.name}</p>
-                <p className="text-sm text-[var(--muted)]">{reference.role}</p>
-                <p className="mt-2 text-sm">{reference.email}</p>
-                <p className="text-sm">{reference.phone}</p>
-              </div>
-            </div>
-          </div>
+          </dl>
         </div>
       </section>
-    </main>
+    </>
   );
 }

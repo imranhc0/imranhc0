@@ -1,41 +1,31 @@
-export function formatDate(isoDate: string | null): string {
-  if (!isoDate) {
-    return "Draft";
-  }
+const dayFormat = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
-  const date = new Date(isoDate);
+const monthFormat = new Intl.DateTimeFormat("en-GB", {
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
-  if (Number.isNaN(date.getTime())) {
-    return "Unknown date";
-  }
-
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(date);
+/** 16 Feb 2026 */
+export function formatDate(iso: string): string {
+  return dayFormat.format(new Date(iso));
 }
 
-export function createSlug(value: string): string {
-  return value
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+/** Feb 2026 */
+export function formatMonth(iso: string): string {
+  return monthFormat.format(new Date(iso));
 }
 
-export function splitCommaValues(value: string): string[] {
-  return value
-    .split(",")
-    .map((item) => item.trim())
-    .filter(Boolean);
+/** Mar 2023 – Present */
+export function formatRange(start: string, end: string | null): string {
+  return `${formatMonth(start)} – ${end ? formatMonth(end) : "Present"}`;
 }
 
-export function truncate(value: string, max = 150): string {
-  if (value.length <= max) {
-    return value;
-  }
-
-  return `${value.slice(0, max).trim()}...`;
+export function pad(index: number): string {
+  return String(index + 1).padStart(2, "0");
 }
