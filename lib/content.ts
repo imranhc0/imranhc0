@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
 import { cache } from "react";
+import { parse as parseYaml } from "yaml";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const showDrafts = process.env.NODE_ENV === "development";
@@ -43,6 +43,28 @@ class ContentError extends Error {
   }
 }
 
+const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
+
+function parseFrontmatter(source: string, file: string): { data: Frontmatter; body: string } {
+  const text = source.replace(/^﻿/, "");
+  const match = FRONTMATTER.exec(text);
+  if (!match) {
+    throw new ContentError(file, "missing frontmatter (a --- block at the top of the file).");
+  }
+
+  let data: unknown;
+  try {
+    data = parseYaml(match[1]);
+  } catch (error) {
+    throw new ContentError(file, `invalid frontmatter YAML: ${(error as Error).message}`);
+  }
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    throw new ContentError(file, "frontmatter must be a list of key: value pairs.");
+  }
+
+  return { data: data as Frontmatter, body: text.slice(match[0].length) };
+}
+
 function readMarkdownFiles(kind: "posts" | "projects") {
   const dir = path.join(CONTENT_DIR, kind);
   if (!fs.existsSync(dir)) return [];
@@ -53,8 +75,8 @@ function readMarkdownFiles(kind: "posts" | "projects") {
     .filter((name) => name.endsWith(".md") && !name.startsWith("_"))
     .map((name) => {
       const file = path.join(dir, name);
-      const { data, content } = matter(fs.readFileSync(file, "utf8"));
-      return { file, slug: name.replace(/\.md$/, ""), data: data as Frontmatter, body: content };
+      const { data, body } = parseFrontmatter(fs.readFileSync(file, "utf8"), file);
+      return { file, slug: name.replace(/\.md$/, ""), data, body };
     });
 }
 
@@ -77,7 +99,7 @@ function list(data: Frontmatter, key: string): string[] {
   return value.map(String).filter(Boolean);
 }
 
-// YAML parses `date: 2026-02-16` into a Date; quoted dates stay strings.
+// The yaml package (YAML 1.2) keeps `date: 2026-02-16` as a string; Date objects are accepted too.
 function date(data: Frontmatter, key: string, file: string, required: true): string;
 function date(data: Frontmatter, key: string, file: string, required: false): string | null;
 function date(data: Frontmatter, key: string, file: string, required: boolean): string | null {
