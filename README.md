@@ -1,93 +1,68 @@
 <h1 align="center">Md Imran Hossen</h1>
+
 <p align="center">
-  <b>Full-Stack Engineer &amp; Team Lead</b> · Security SaaS · API-First Systems
+  <b>Full-Stack Engineer &amp; Team Lead</b> · Cybersecurity SaaS · API-first microservices
+  <br />
+  Dhaka, Bangladesh (UTC+6) · <b>Open to roles in Europe</b>, relocation or remote with CET overlap
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&pause=1200&center=true&vCenter=true&width=700&lines=I+build+secure%2C+scalable+web+platforms.;Node.js+%7C+TypeScript+%7C+React+%7C+Next.js+%7C+Python;Turning+complex+backend+logic+into+clean+user+experiences." alt="Typing SVG" />
-</p>
-
----
-
-## About Me
-
-- Full-stack engineer and team lead with 3.5+ years of experience building production-grade security SaaS.
-- Focused on backend architecture, secure authentication, event-driven systems, and responsive frontend delivery.
-- Experienced in cyber security SaaS products and real-time threat intelligence platforms.
-- I enjoy writing clean APIs, improving developer velocity, and shipping reliable releases through CI/CD.
-
-## Tech Stack
-
-### Languages
-
-![JavaScript](https://img.shields.io/badge/JavaScript-111827?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![TypeScript](https://img.shields.io/badge/TypeScript-111827?style=for-the-badge&logo=typescript&logoColor=3178C6)
-![Python](https://img.shields.io/badge/Python-111827?style=for-the-badge&logo=python&logoColor=3776AB)
-
-### Frontend
-
-![React](https://img.shields.io/badge/React-111827?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/Next.js-111827?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![Redux](https://img.shields.io/badge/Redux-111827?style=for-the-badge&logo=redux&logoColor=764ABC)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-111827?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4)
-![Zustand](https://img.shields.io/badge/Zustand-111827?style=for-the-badge&logo=react&logoColor=white)
-
-### Backend & Data
-
-![Node.js](https://img.shields.io/badge/Node.js-111827?style=for-the-badge&logo=nodedotjs&logoColor=339933)
-![Express](https://img.shields.io/badge/Express-111827?style=for-the-badge&logo=express&logoColor=white)
-![Django](https://img.shields.io/badge/Django-111827?style=for-the-badge&logo=django&logoColor=092E20)
-![Flask](https://img.shields.io/badge/Flask-111827?style=for-the-badge&logo=flask&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-111827?style=for-the-badge&logo=postgresql&logoColor=4169E1)
-![MongoDB](https://img.shields.io/badge/MongoDB-111827?style=for-the-badge&logo=mongodb&logoColor=47A248)
-![Prisma](https://img.shields.io/badge/Prisma-111827?style=for-the-badge&logo=prisma&logoColor=2D3748)
-![Kafka](https://img.shields.io/badge/Kafka-111827?style=for-the-badge&logo=apachekafka&logoColor=white)
-![WebSocket](https://img.shields.io/badge/WebSocket-111827?style=for-the-badge&logo=socketdotio&logoColor=white)
-
-### DevOps & Tools
-
-![Docker](https://img.shields.io/badge/Docker-111827?style=for-the-badge&logo=docker&logoColor=2496ED)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-111827?style=for-the-badge&logo=githubactions&logoColor=2088FF)
-![AWS](https://img.shields.io/badge/AWS-111827?style=for-the-badge&logo=amazonaws&logoColor=FF9900)
-![Git](https://img.shields.io/badge/Git-111827?style=for-the-badge&logo=git&logoColor=F05032)
-![Postman](https://img.shields.io/badge/Postman-111827?style=for-the-badge&logo=postman&logoColor=FF6C37)
-
-## Professional Highlights
-
-- Promoted twice in three years at **Pipeline Co., Ltd**, a Japanese cyber-intelligence company: Frontend Developer → Software Engineer → **Team Lead**.
-- Lead and mentor an engineering team: sprint planning, code review standards, and architecture decisions on API contracts, data models and service boundaries.
-- Designed API-first microservices in Node.js (Express) and Python (Django, Flask) with JWT authentication and role-based access control.
-- Built real-time pipelines on Kafka and WebSockets, with asynchronous processing in Celery.
-- Modelled and optimised data across PostgreSQL, TimescaleDB, MongoDB, DynamoDB and Pinecone (vector search).
-- Shipped React and Next.js interfaces end to end, covered by Cypress end-to-end tests and deployed to AWS through GitHub Actions CI/CD.
-
-## Featured Work
-
-- **[ThreatIDR](https://www.ppln.co/threatidr)**: DNS security platform that blocks malware, phishing and C2 traffic before a connection is made.
-- **[RiskSensor](https://www.ppln.co/risksensor)**: External attack-surface and supply-chain risk visibility platform.
-- **Portfolio Platform**: statically generated Next.js portfolio with a markdown-driven blog and case studies.
-
-## GitHub Analytics
-
-<p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=imranhc0&show_icons=true&theme=transparent&hide_border=true" />
-  <img height="170" src="https://github-readme-streak-stats.herokuapp.com/?user=imranhc0&theme=transparent&hide_border=true" />
-</p>
-
-<p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=imranhc0&layout=compact&theme=transparent&hide_border=true" />
-</p>
-
-## Connect With Me
-
-<p>
-  <a href="mailto:imranhosein.cse@gmail.com"><img src="https://img.shields.io/badge/Email-imranhosein.cse%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
-  <a href="https://www.linkedin.com/in/imranhc0/"><img src="https://img.shields.io/badge/LinkedIn-imranhc0-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-  <a href="https://imranhc0.vercel.app"><img src="https://img.shields.io/badge/Portfolio-imranhc0.vercel.app-1B3CE3?style=for-the-badge&logo=vercel&logoColor=white" /></a>
+  <a href="https://imranhc0.vercel.app"><img src="https://img.shields.io/badge/Portfolio-imranhc0.vercel.app-1B3CE3?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+  <a href="https://imranhc0.vercel.app/resume.pdf"><img src="https://img.shields.io/badge/CV-Download_PDF-111827?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download CV" /></a>
+  <a href="https://www.linkedin.com/in/imranhc0/"><img src="https://img.shields.io/badge/LinkedIn-imranhc0-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:imranhosein.cse@gmail.com"><img src="https://img.shields.io/badge/Email-imranhosein.cse%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
 </p>
 
 ---
 
+I build the backend of security products and the interfaces on top of them. For 3.5+ years at [Pipeline Co., Ltd](https://www.ppln.co), a Japanese cyber-intelligence company, I have shipped API-first microservices, real-time threat-data pipelines and React dashboards for products like ThreatIDR and RiskSensor. I now lead an engineering team while staying hands-on on critical-path features.
+
+## At a glance
+
+| | |
+|---|---|
+| **Current role** | Team Lead, Software Engineering at Pipeline Co., Ltd |
+| **Experience** | 3.5+ years in production, promoted twice in three years |
+| **Strengths** | Microservices, event-driven systems, real-time data, security SaaS |
+| **Looking for** | Full-stack, backend or team-lead roles in Europe (relocation or remote) |
+| **Languages** | English, Bengali (native) |
+| **Education** | BSc in Computer Science and Engineering (final year), Diploma in Computer Science Technology |
+
+## Career
+
+**[Pipeline Co., Ltd](https://www.ppln.co)** · Cybersecurity SaaS · Mar 2023 – present
+
+- **Team Lead, Software Engineering** · Aug 2026 – present<br>Lead and mentor an engineering team. Own sprint planning, code review standards and architecture decisions on API contracts, data models and service boundaries, and still ship critical-path features in Python, Django, React, Next.js and TypeScript.
+- **Software Engineer** · Jul 2025 – Aug 2026<br>Designed API-first microservices in Node.js (Express) and Python (Django, Flask) with JWT authentication and role-based access control. Built real-time pipelines on Kafka and WebSockets and optimised schemas across PostgreSQL and MongoDB. Mentored junior developers and led code reviews.
+- **Frontend Developer** · Mar 2023 – Jul 2025<br>Built React, Next.js and TypeScript applications from Figma designs, covered by Cypress end-to-end tests and deployed to AWS through GitHub Actions.
+
+## Featured work
+
+| Project | What it is | My part |
+|---|---|---|
+| **[RiskSensor](https://www.ppln.co/risksensor)** | External attack-surface and supply-chain risk platform | Architected the backend in Django, Express and Go, with data models on PostgreSQL, DynamoDB and Pinecone (vector search). [Case&nbsp;study&nbsp;→](https://imranhc0.vercel.app/projects/risk-sensor) |
+| **[ThreatIDR](https://www.ppln.co/threatidr)** | DNS security platform that blocks malware, phishing and C2 traffic before a connection is made | Backend in Flask and Celery, live threat monitoring over WebSockets, time-series storage in TimescaleDB. [Case&nbsp;study&nbsp;→](https://imranhc0.vercel.app/projects/threatidr) |
+| **[Portfolio](https://imranhc0.vercel.app)** | Statically generated Next.js site with a markdown blog ([source](https://github.com/imranhc0/imranhc0)) | Lighthouse 98–100 on mobile, no database, no tracking |
+
+## Tech stack
+
+| Area | Tools |
+|---|---|
+| Languages | TypeScript, JavaScript, Python, Go |
+| Backend | Node.js, Express, Django, Flask, Gin, REST APIs, microservices |
+| Events and real-time | Kafka, WebSockets, Celery |
+| Data | PostgreSQL, TimescaleDB, MongoDB, DynamoDB, Redis, Pinecone, Prisma |
+| Frontend | React, Next.js, Redux, Zustand, Tailwind CSS, MUI |
+| Security | JWT, RBAC, Zod validation, DNS security |
+| Testing and delivery | Cypress, Docker, GitHub Actions, AWS |
+
+## Writing
+
+- [Designing API-First Security Products](https://imranhc0.vercel.app/blog/designing-api-first-security-products): structuring microservices and contracts for high-risk domains.
+- [CI/CD Pipelines That Actually Reduce Risk](https://imranhc0.vercel.app/blog/ci-cd-pipelines-that-actually-reduce-risk): building rollback, validation and traceability into delivery.
+
+---
+
 <p align="center">
-  <i>Open to impactful software engineering opportunities and challenging full-stack projects.</i>
+  <i>Hiring in Europe? Email <a href="mailto:imranhosein.cse@gmail.com">imranhosein.cse@gmail.com</a> or message me on <a href="https://www.linkedin.com/in/imranhc0/">LinkedIn</a>.</i>
 </p>
