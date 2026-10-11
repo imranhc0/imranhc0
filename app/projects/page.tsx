@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { ProjectList } from "@/components/project-list";
 import { getProjects } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Work",
   description: "Case studies from building cybersecurity SaaS: DNS firewalls, threat intelligence and real-time pipelines.",
-  alternates: { canonical: "/projects" },
-};
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   const projects = getProjects();

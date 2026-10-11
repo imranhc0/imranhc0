@@ -1,15 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Fragment_Mono } from "next/font/google";
+import { Fragment_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { profile, siteUrl } from "@/lib/profile";
 import "./globals.css";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  axes: ["wdth"],
+// Archivo trimmed to the weights and widths the site uses (52 KB vs 90 KB). See app/fonts/README.md.
+const archivo = localFont({
+  src: "./fonts/archivo-latin-var.woff2",
+  weight: "400 800",
   variable: "--font-archivo",
   display: "swap",
+  adjustFontFallback: "Arial",
+  declarations: [{ prop: "font-stretch", value: "100% 125%" }],
 });
 
 const fragmentMono = Fragment_Mono({
@@ -37,6 +41,7 @@ export const metadata: Metadata = {
   alternates: {
     types: { "application/rss+xml": [{ url: "/rss.xml", title: `${profile.name}: Writing` }] },
   },
+  verification: { google: "WA0ezcf4u4NL-rtImvfNJJxScFWJsox8Y25kK2owesM" },
 };
 
 export const viewport: Viewport = {
@@ -48,7 +53,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${fragmentMono.variable}`}>
+    <html lang="en-GB" className={`${archivo.variable} ${fragmentMono.variable}`}>
       <body className="flex min-h-dvh flex-col bg-paper font-sans text-ink">
         <a
           href="#main"

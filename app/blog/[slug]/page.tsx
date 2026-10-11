@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/json-ld";
 import { getPost, getPosts } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 import { renderMarkdown } from "@/lib/markdown";
+import { breadcrumbs, pageMetadata, personId } from "@/lib/metadata";
 import { profile, siteUrl } from "@/lib/profile";
 
 interface PostPageProps {
@@ -20,21 +22,12 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   const post = getPost((await params).slug);
   if (!post) return {};
 
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.description,
-    keywords: post.tags,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.description,
-      publishedTime: post.date,
-      modifiedTime: post.updated ?? post.date,
-      authors: [profile.name],
-      tags: post.tags,
-    },
-  };
+    path: `/blog/${post.slug}`,
+    article: { publishedTime: post.date, modifiedTime: post.updated ?? post.date, tags: post.tags },
+  });
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -48,24 +41,37 @@ export default async function PostPage({ params }: PostPageProps) {
   const newer = posts[index - 1];
   const older = posts[index + 1];
 
-  const jsonLd = {
+  const url = `${siteUrl}/blog/${post.slug}`;
+  const structuredData = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.updated ?? post.date,
-    author: { "@type": "Person", name: profile.name, url: siteUrl },
-    url: `${siteUrl}/blog/${post.slug}`,
-    keywords: post.tags.join(", "),
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        headline: post.title,
+        description: post.description,
+        datePublished: post.date,
+        dateModified: post.updated ?? post.date,
+        author: { "@type": "Person", "@id": personId, name: profile.name, url: siteUrl },
+        publisher: { "@id": personId },
+        mainEntityOfPage: url,
+        url,
+        image: `${url}/opengraph-image`,
+        inLanguage: "en-GB",
+        keywords: post.tags.join(", "),
+        wordCount: post.body.split(/\s+/).filter(Boolean).length,
+      },
+      breadcrumbs([
+        { name: "Home", path: "/" },
+        { name: "Writing", path: "/blog" },
+        { name: post.title, path: `/blog/${post.slug}` },
+      ]),
+    ],
   };
 
   return (
     <article className="wrap pt-12 pb-24 md:pt-20">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={structuredData} />
       <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
         <aside className="md:col-span-3">
           <div className="t-meta space-y-4 md:sticky md:top-[calc(var(--header-h)+1.5rem)]">

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DnsFigure } from "@/components/dns-figure";
+import { JsonLd } from "@/components/json-ld";
 import { PostList } from "@/components/post-list";
 import { ProjectList } from "@/components/project-list";
 import { Section } from "@/components/section";
 import { getPosts, getProjects } from "@/lib/content";
 import { formatRange, pad } from "@/lib/format";
+import { pageMetadata, personId, websiteId } from "@/lib/metadata";
 import {
   education,
   experience,
@@ -20,24 +22,45 @@ import {
   tenure,
 } from "@/lib/profile";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "/",
-    types: { "application/rss+xml": [{ url: "/rss.xml", title: `${profile.name}: Writing` }] },
-  },
-};
+export const metadata: Metadata = pageMetadata({ description: profile.description, path: "/" });
 
-const personJsonLd = {
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  jobTitle: profile.currentTitle,
-  worksFor: { "@type": "Organization", name: profile.company },
-  url: siteUrl,
-  email: `mailto:${profile.email}`,
-  address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
-  sameAs: [profile.github, profile.linkedin],
-  knowsAbout: ["Microservices", "Event-driven architecture", "Cybersecurity SaaS", "TypeScript", "Python"],
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: siteUrl,
+      name: profile.name,
+      description: profile.description,
+      inLanguage: "en-GB",
+      publisher: { "@id": personId },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#profile`,
+      url: siteUrl,
+      name: `${profile.name} · ${profile.role}`,
+      isPartOf: { "@id": websiteId },
+      mainEntity: { "@id": personId },
+      inLanguage: "en-GB",
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: profile.name,
+      jobTitle: profile.currentTitle,
+      description: profile.description,
+      url: siteUrl,
+      email: `mailto:${profile.email}`,
+      worksFor: { "@type": "Organization", name: profile.company },
+      address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
+      alumniOf: education.map((item) => ({ "@type": "EducationalOrganization", name: item.institution })),
+      knowsLanguage: ["en", "bn"],
+      knowsAbout: stack.flatMap((group) => group.items).slice(0, 30),
+      sameAs: [profile.github, profile.linkedin],
+    },
+  ],
 };
 
 export default function Home() {
@@ -55,10 +78,7 @@ export default function Home() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={structuredData} />
 
       {/* Hero */}
       <section className="wrap pt-12 pb-14 md:pt-20 md:pb-20">
@@ -77,10 +97,10 @@ export default function Home() {
               <a href={`mailto:${profile.email}`} className="btn btn-primary">
                 Email me <span className="arrow">→</span>
               </a>
-              <a href={profile.linkedin} className="btn btn-ghost">
+              <a href={profile.linkedin} rel="me" className="btn btn-ghost">
                 LinkedIn
               </a>
-              <a href={profile.github} className="btn btn-ghost">
+              <a href={profile.github} rel="me" className="btn btn-ghost">
                 GitHub
               </a>
               {resume ? (
@@ -114,10 +134,14 @@ export default function Home() {
       <Section id="profile" index="01" title="Profile">
         <div className="t-lede max-w-[54ch] space-y-5">
           <p>
-            I joined {profile.company}, a cybersecurity SaaS company, as a frontend developer in
-            March 2023. I moved into backend and microservices work as a software engineer with the
-            Tokyo office, and since August 2026 I have led an engineering team in Dhaka while staying
-            hands-on.
+            I joined{" "}
+            <a href={profile.companyUrl} className="link">
+              {profile.company}
+            </a>
+            , a Japanese cyber-intelligence company, as a frontend developer in March 2023, working
+            full-time and remotely with its Dhaka team. I moved into backend and
+            microservices work as a software engineer, and since August 2026 I have led an
+            engineering team in Dhaka while staying hands-on.
           </p>
           <p className="text-ink-2">
             Most of my work sits where security products get hard: API-first services in Python and
@@ -143,7 +167,11 @@ export default function Home() {
         {experience.map((employer) => (
           <article key={employer.company}>
             <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-              <h3 className="t-headline">{employer.company}</h3>
+              <h3 className="t-headline">
+                <a href={employer.url} className="transition-colors duration-200 hover:text-accent">
+                  {employer.company}
+                </a>
+              </h3>
               <p className="t-meta">
                 {employer.sector} · {formatRange(employer.start, null)} · {tenure(employer.start)}
               </p>

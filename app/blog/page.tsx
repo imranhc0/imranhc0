@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { PostList } from "@/components/post-list";
 import { getPosts } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Writing",
-  description: "Notes on API design, distributed systems and shipping security software safely.",
-  alternates: {
-    canonical: "/blog",
-    types: { "application/rss+xml": [{ url: "/rss.xml", title: "Writing" }] },
-  },
-};
+  description: "Notes on API design, distributed systems and shipping security software safely, by Md Imran Hossen.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getPosts();
