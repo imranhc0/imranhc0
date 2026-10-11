@@ -2,15 +2,20 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-xl items-center px-4">
-      <section className="w-full rounded-[28px] border border-[var(--line)] bg-white/90 p-8 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">404</p>
-        <h1 className="mt-2 text-4xl font-black text-[var(--ink)]">Page Not Found</h1>
-        <p className="mt-3 text-sm text-[var(--muted)]">The page you requested does not exist or is unpublished.</p>
-        <Link href="/" className="mt-6 inline-flex rounded-full bg-[var(--ink)] px-5 py-2.5 text-sm font-bold text-white">
-          Back Home
+    <section className="wrap pt-16 pb-28 md:pt-28">
+      <p className="t-meta">HTTP 404 · NXDOMAIN</p>
+      <h1 className="t-page mt-4">No route to this page.</h1>
+      <p className="t-lede mt-6 max-w-[42ch] text-ink-2">
+        The address does not resolve to anything here. It may have moved, or it never existed.
+      </p>
+      <div className="mt-10 flex flex-wrap gap-3">
+        <Link href="/" className="btn btn-primary">
+          Back to the start <span className="arrow">→</span>
         </Link>
-      </section>
-    </main>
+        <Link href="/blog" className="btn btn-ghost">
+          Writing
+        </Link>
+      </div>
+    </section>
   );
 }
