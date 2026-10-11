@@ -80,11 +80,11 @@ I build the backend of security products and the interfaces on top of them, and 
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=imranhc0&show_icons=true&hide_border=true&border_radius=10&rank_icon=github&cache_seconds=43200&hide=issues%2Ccontribs&disable_animations=true&bg_color=0D1117&title_color=85A6FF&icon_color=85A6FF&text_color=C9D1D9&ring_color=85A6FF" />
-    <img src="https://github-readme-stats.vercel.app/api?username=imranhc0&show_icons=true&hide_border=true&border_radius=10&rank_icon=github&cache_seconds=43200&hide=issues%2Ccontribs&disable_animations=true&bg_color=F6F8FA&title_color=1B3CE3&icon_color=1B3CE3&text_color=1F2328&ring_color=1B3CE3" height="150" alt="GitHub stats for imranhc0" />
+    <img src="https://github-readme-stats.vercel.app/api?username=imranhc0&show_icons=true&hide_border=true&border_radius=10&rank_icon=github&cache_seconds=43200&hide=issues%2Ccontribs&disable_animations=true&bg_color=F6F8FA&title_color=1B3CE3&icon_color=1B3CE3&text_color=1F2328&ring_color=1B3CE3" width="47.5%" alt="GitHub stats for imranhc0" />
   </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=imranhc0&disable_animations=true&hide_border=true&border_radius=10&theme=github-dark-blue" />
-    <img src="https://streak-stats.demolab.com?user=imranhc0&disable_animations=true&hide_border=true&border_radius=10&background=F6F8FA&ring=1B3CE3&fire=1B3CE3&currStreakLabel=1B3CE3&sideNums=1F2328&currStreakNum=1F2328&sideLabels=1F2328&dates=57606A&stroke=D0D7DE" height="150" alt="GitHub contribution streak for imranhc0" />
+    <img src="https://streak-stats.demolab.com?user=imranhc0&disable_animations=true&hide_border=true&border_radius=10&background=F6F8FA&ring=1B3CE3&fire=1B3CE3&currStreakLabel=1B3CE3&sideNums=1F2328&currStreakNum=1F2328&sideLabels=1F2328&dates=57606A&stroke=D0D7DE" width="50.4%" alt="GitHub contribution streak for imranhc0" />
   </picture>
 </p>
 
