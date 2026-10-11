@@ -54,11 +54,12 @@
 
 ## Professional Highlights
 
-- Built and maintained microservices for a cyber security SaaS platform using Node.js and Python.
-- Implemented JWT authentication and role-based access control across services.
-- Integrated REST APIs, Kafka pipelines, and WebSocket channels for real-time communication.
-- Developed frontend dashboards with React + state management (Redux, Zustand).
-- Automated CI/CD pipelines using GitHub Actions for faster and safer deployments.
+- Promoted twice in three years at **Pipeline Co., Ltd**, a Japanese cyber-intelligence company: Frontend Developer → Software Engineer → **Team Lead**.
+- Lead and mentor an engineering team: sprint planning, code review standards, and architecture decisions on API contracts, data models and service boundaries.
+- Designed API-first microservices in Node.js (Express) and Python (Django, Flask) with JWT authentication and role-based access control.
+- Built real-time pipelines on Kafka and WebSockets, with asynchronous processing in Celery.
+- Modelled and optimised data across PostgreSQL, TimescaleDB, MongoDB, DynamoDB and Pinecone (vector search).
+- Shipped React and Next.js interfaces end to end, covered by Cypress end-to-end tests and deployed to AWS through GitHub Actions CI/CD.
 
 ## Featured Work
 
