@@ -1,19 +1,14 @@
-<h1 align="center">Md Imran Hossen</h1>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme/banner-dark.svg" />
+  <img src=".github/readme/banner-light.svg" width="100%" alt="Md Imran Hossen. Full-Stack Engineer and Team Lead at Pipeline Co., Ltd, building cybersecurity SaaS. Based in Dhaka, Bangladesh (UTC+6), open to roles in Europe with relocation or remote work. 3.5+ years in production, promoted twice in three years. Includes an animated diagram of a DNS firewall request path." />
+</picture>
 
 <p align="center">
-  <b>Full-Stack Engineer &amp; Team Lead</b> · Cybersecurity SaaS · API-first microservices
-  <br />
-  Dhaka, Bangladesh (UTC+6) · <b>Open to roles in Europe</b>, relocation or remote with CET overlap
+  <a href="https://imranhc0.vercel.app"><img src="https://img.shields.io/badge/Portfolio-imranhc0.vercel.app-1B3CE3?style=for-the-badge&labelColor=12161F&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+  <a href="https://imranhc0.vercel.app/resume.pdf"><img src="https://img.shields.io/badge/CV-Download_PDF-1B3CE3?style=for-the-badge&labelColor=12161F&logo=adobeacrobatreader&logoColor=white" alt="Download CV" /></a>
+  <a href="https://www.linkedin.com/in/imranhc0/"><img src="https://img.shields.io/badge/LinkedIn-imranhc0-1B3CE3?style=for-the-badge&labelColor=12161F&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:imranhosein.cse@gmail.com"><img src="https://img.shields.io/badge/Email-imranhosein.cse%40gmail.com-1B3CE3?style=for-the-badge&labelColor=12161F&logo=gmail&logoColor=white" alt="Email" /></a>
 </p>
-
-<p align="center">
-  <a href="https://imranhc0.vercel.app"><img src="https://img.shields.io/badge/Portfolio-imranhc0.vercel.app-1B3CE3?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
-  <a href="https://imranhc0.vercel.app/resume.pdf"><img src="https://img.shields.io/badge/CV-Download_PDF-111827?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download CV" /></a>
-  <a href="https://www.linkedin.com/in/imranhc0/"><img src="https://img.shields.io/badge/LinkedIn-imranhc0-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="mailto:imranhosein.cse@gmail.com"><img src="https://img.shields.io/badge/Email-imranhosein.cse%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
-</p>
-
----
 
 I build the backend of security products and the interfaces on top of them. For 3.5+ years at [Pipeline Co., Ltd](https://www.ppln.co), a Japanese cyber-intelligence company, I have shipped API-first microservices, real-time threat-data pipelines and React dashboards for products like ThreatIDR and RiskSensor. I now lead an engineering team while staying hands-on on critical-path features.
 
@@ -38,11 +33,14 @@ I build the backend of security products and the interfaces on top of them. For 
 
 ## Featured work
 
-| Project | What it is | My part |
-|---|---|---|
-| **[RiskSensor](https://www.ppln.co/risksensor)** | External attack-surface and supply-chain risk platform | Architected the backend in Django, Express and Go, with data models on PostgreSQL, DynamoDB and Pinecone (vector search). [Case&nbsp;study&nbsp;→](https://imranhc0.vercel.app/projects/risk-sensor) |
-| **[ThreatIDR](https://www.ppln.co/threatidr)** | DNS security platform that blocks malware, phishing and C2 traffic before a connection is made | Backend in Flask and Celery, live threat monitoring over WebSockets, time-series storage in TimescaleDB. [Case&nbsp;study&nbsp;→](https://imranhc0.vercel.app/projects/threatidr) |
-| **[Portfolio](https://imranhc0.vercel.app)** | Statically generated Next.js site with a markdown blog ([source](https://github.com/imranhc0/imranhc0)) | Lighthouse 98–100 on mobile, no database, no tracking |
+<p align="center">
+  <a href="https://imranhc0.vercel.app/projects/risk-sensor"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/readme/card-risksensor-dark.svg" /><img src=".github/readme/card-risksensor-light.svg" width="49%" alt="RiskSensor case study: external attack-surface and supply-chain risk platform. Backend architecture and full-stack, with Django, Express, Go, PostgreSQL and Pinecone." /></picture></a>
+  <a href="https://imranhc0.vercel.app/projects/threatidr"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/readme/card-threatidr-dark.svg" /><img src=".github/readme/card-threatidr-light.svg" width="49%" alt="ThreatIDR case study: blocks malware, phishing and C2 at the DNS layer, before connection. Backend engineer, with Flask, Celery, TimescaleDB and WebSockets." /></picture></a>
+</p>
+
+- **RiskSensor** · Architected the backend in Django, Express and Go, with data models on PostgreSQL, DynamoDB and Pinecone (vector search). [Product](https://www.ppln.co/risksensor) · [Case study](https://imranhc0.vercel.app/projects/risk-sensor)
+- **ThreatIDR** · Backend in Flask and Celery, live threat monitoring over WebSockets, time-series storage in TimescaleDB. [Product](https://www.ppln.co/threatidr) · [Case study](https://imranhc0.vercel.app/projects/threatidr)
+- **This portfolio** · Statically generated Next.js site with a markdown blog, Lighthouse 98–100 on mobile, no database, no tracking. [Live](https://imranhc0.vercel.app) · [Source](https://github.com/imranhc0/imranhc0)
 
 ## Tech stack
 
@@ -61,8 +59,11 @@ I build the backend of security products and the interfaces on top of them. For 
 - [Designing API-First Security Products](https://imranhc0.vercel.app/blog/designing-api-first-security-products): structuring microservices and contracts for high-risk domains.
 - [CI/CD Pipelines That Actually Reduce Risk](https://imranhc0.vercel.app/blog/ci-cd-pipelines-that-actually-reduce-risk): building rollback, validation and traceability into delivery.
 
----
+<br />
 
-<p align="center">
-  <i>Hiring in Europe? Email <a href="mailto:imranhosein.cse@gmail.com">imranhosein.cse@gmail.com</a> or message me on <a href="https://www.linkedin.com/in/imranhc0/">LinkedIn</a>.</i>
-</p>
+<a href="mailto:imranhosein.cse@gmail.com"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme/contact-dark.svg" />
+  <img src=".github/readme/contact-light.svg" width="100%" alt="Hiring in Europe? Let's talk. Email imranhosein.cse@gmail.com. Based in Dhaka, Bangladesh (UTC+6), open to relocation or remote work. References on request." />
+</picture></a>
+
+<p align="center"><sub>Email <a href="mailto:imranhosein.cse@gmail.com">imranhosein.cse@gmail.com</a> · <a href="https://www.linkedin.com/in/imranhc0/">LinkedIn</a> · <a href="https://imranhc0.vercel.app">imranhc0.vercel.app</a></sub></p>
