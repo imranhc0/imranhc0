@@ -1,69 +1,100 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/readme/banner-dark.svg" />
-  <img src=".github/readme/banner-light.svg" width="100%" alt="Md Imran Hossen. Full-Stack Engineer and Team Lead at Pipeline Co., Ltd, building cybersecurity SaaS. Based in Dhaka, Bangladesh (UTC+6), open to roles in Europe with relocation or remote work. 3.5+ years in production, promoted twice in three years. Includes an animated diagram of a DNS firewall request path." />
-</picture>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1B3CE3,100:7C4DFF&height=210&section=header&text=Md%20Imran%20Hossen&fontSize=52&fontColor=FFFFFF&fontAlignY=36&desc=Full-Stack%20Engineer%20and%20Team%20Lead%20%C2%B7%20Cybersecurity%20SaaS&descAlignY=57&descSize=18&animation=fadeIn" width="100%" alt="Md Imran Hossen, Full-Stack Engineer and Team Lead, Cybersecurity SaaS" />
 
 <p align="center">
-  <a href="https://imranhc0.vercel.app"><img src="https://img.shields.io/badge/Portfolio-imranhc0.vercel.app-1B3CE3?style=for-the-badge&labelColor=12161F&logo=vercel&logoColor=white" alt="Portfolio" /></a>
-  <a href="https://imranhc0.vercel.app/resume.pdf"><img src="https://img.shields.io/badge/CV-Download_PDF-1B3CE3?style=for-the-badge&labelColor=12161F&logo=adobeacrobatreader&logoColor=white" alt="Download CV" /></a>
-  <a href="https://www.linkedin.com/in/imranhc0/"><img src="https://img.shields.io/badge/LinkedIn-imranhc0-1B3CE3?style=for-the-badge&labelColor=12161F&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="mailto:imranhosein.cse@gmail.com"><img src="https://img.shields.io/badge/Email-imranhosein.cse%40gmail.com-1B3CE3?style=for-the-badge&labelColor=12161F&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://imranhc0.vercel.app">
+    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=3200&pause=900&color=3D5AFE&center=true&vCenter=true&width=720&lines=Full-Stack+Engineer+and+Team+Lead;Building+cybersecurity+SaaS+at+Pipeline+Co.;Node.js+%C2%B7+Python+%C2%B7+TypeScript+%C2%B7+React+%C2%B7+Kafka;Open+to+roles+in+Europe%3A+relocation+or+remote" alt="Full-Stack Engineer and Team Lead. Building cybersecurity SaaS at Pipeline Co. Open to roles in Europe." />
+  </a>
 </p>
 
-I build the backend of security products and the interfaces on top of them. For 3.5+ years at [Pipeline Co., Ltd](https://www.ppln.co), a Japanese cyber-intelligence company, I have shipped API-first microservices, real-time threat-data pipelines and React dashboards for products like ThreatIDR and RiskSensor. I now lead an engineering team while staying hands-on on critical-path features.
+<p align="center">
+  <a href="https://imranhc0.vercel.app"><img src="https://img.shields.io/badge/Portfolio-imranhc0.vercel.app-1B3CE3?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+  <a href="https://imranhc0.vercel.app/resume.pdf"><img src="https://img.shields.io/badge/CV-Download_PDF-12161F?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download CV" /></a>
+  <a href="https://www.linkedin.com/in/imranhc0/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:imranhosein.cse@gmail.com"><img src="https://img.shields.io/badge/Email-Get_in_touch-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+</p>
 
-## At a glance
+<p align="center">
+  <img src="https://img.shields.io/badge/Open_to-Roles_in_Europe-2EA44F?style=flat-square" alt="Open to roles in Europe" />
+  <img src="https://img.shields.io/badge/Relocation-or_remote-2EA44F?style=flat-square" alt="Relocation or remote" />
+  <img src="https://img.shields.io/badge/Based_in-Dhaka_(UTC%2B6)-57606A?style=flat-square" alt="Based in Dhaka (UTC+6)" />
+  <img src="https://img.shields.io/badge/Experience-3.5%2B_years-57606A?style=flat-square" alt="3.5+ years of experience" />
+</p>
+
+## 👋 About me
+
+I build the backend of security products and the interfaces on top of them, and I now lead the team that ships them.
+
+- 💼 **Team Lead, Software Engineering** at [Pipeline Co., Ltd](https://www.ppln.co), a Japanese cyber-intelligence company
+- 🚀 **3.5+ years in production**, promoted twice in three years
+- 🛡️ Building **DNS security** and **attack-surface** platforms: [ThreatIDR](https://www.ppln.co/threatidr) and [RiskSensor](https://www.ppln.co/risksensor)
+- ⚙️ API-first microservices, event-driven systems and real-time data with Node.js, Python, Kafka and WebSockets
+- 🌍 Based in Dhaka (UTC+6), **open to roles in Europe** with relocation or remote work (CET overlap)
+- 🎓 BSc in Computer Science and Engineering (final year) · Diploma in Computer Science Technology
+- 🗣️ English · Bengali (native)
+
+## 📈 Career
+
+| Role | Period | Focus |
+|---|---|---|
+| **Team Lead, Software Engineering** | Aug 2026 – present | Leading and mentoring the team, sprint planning, code review standards, architecture for API contracts, data models and service boundaries |
+| **Software Engineer** | Jul 2025 – Aug 2026 | API-first microservices in Node.js and Python, JWT and RBAC, Kafka and WebSocket pipelines, schema optimisation |
+| **Frontend Developer** | Mar 2023 – Jul 2025 | React, Next.js and TypeScript apps from Figma, Cypress end-to-end tests, CI/CD to AWS |
+
+<sub>All three roles at <a href="https://www.ppln.co">Pipeline Co., Ltd</a>.</sub>
+
+## 🛠️ Featured work
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3><a href="https://www.ppln.co/risksensor">RiskSensor</a></h3>
+      <p>External attack-surface and supply-chain risk platform. Maps leaked data, shadow IT and vulnerable public services across a company, its subsidiaries and its suppliers.</p>
+      <p><b>My part:</b> architected the backend in Django, Express and Go, with data models on PostgreSQL, DynamoDB and Pinecone for vector search.</p>
+      <img src="https://skillicons.dev/icons?i=py,django,nodejs,express,go,postgres,dynamodb,aws,docker,react" height="32" alt="Python, Django, Node.js, Express, Go, PostgreSQL, DynamoDB, AWS, Docker, React" />
+      <p><a href="https://imranhc0.vercel.app/projects/risk-sensor">Read the case study →</a></p>
+    </td>
+    <td width="50%" valign="top">
+      <h3><a href="https://www.ppln.co/threatidr">ThreatIDR</a></h3>
+      <p>DNS security platform. Blocks malware, phishing, C2 and DGA traffic before a connection is made, using threat intelligence refreshed every 60 seconds.</p>
+      <p><b>My part:</b> backend in Flask with Celery for async processing, live threat monitoring over WebSockets, time-series storage in TimescaleDB.</p>
+      <img src="https://skillicons.dev/icons?i=py,flask,postgres,docker,linux" height="32" alt="Python, Flask, PostgreSQL, Docker, Linux" />
+      <p><a href="https://imranhc0.vercel.app/projects/threatidr">Read the case study →</a></p>
+    </td>
+  </tr>
+</table>
+
+## 🧰 Tech stack
 
 | | |
 |---|---|
-| **Current role** | Team Lead, Software Engineering at Pipeline Co., Ltd |
-| **Experience** | 3.5+ years in production, promoted twice in three years |
-| **Strengths** | Microservices, event-driven systems, real-time data, security SaaS |
-| **Looking for** | Full-stack, backend or team-lead roles in Europe (relocation or remote) |
-| **Languages** | English, Bengali (native) |
-| **Education** | BSc in Computer Science and Engineering (final year), Diploma in Computer Science Technology |
+| **Languages** | <img src="https://skillicons.dev/icons?i=ts,js,py,go" height="40" alt="TypeScript, JavaScript, Python, Go" /> |
+| **Backend** | <img src="https://skillicons.dev/icons?i=nodejs,express,django,flask" height="40" alt="Node.js, Express, Django, Flask" /> |
+| **Data and streaming** | <img src="https://skillicons.dev/icons?i=postgres,mongodb,dynamodb,redis,prisma,kafka" height="40" alt="PostgreSQL, MongoDB, DynamoDB, Redis, Prisma, Kafka" /> |
+| **Frontend** | <img src="https://skillicons.dev/icons?i=react,nextjs,redux,tailwind,materialui" height="40" alt="React, Next.js, Redux, Tailwind CSS, MUI" /> |
+| **Testing and DevOps** | <img src="https://skillicons.dev/icons?i=cypress,docker,githubactions,aws" height="40" alt="Cypress, Docker, GitHub Actions, AWS" /> |
 
-## Career
+<sub><b>Also:</b> Celery · WebSockets · TimescaleDB · Pinecone · Gin · Zustand · JWT and RBAC · Zod · REST APIs · microservices</sub>
 
-**[Pipeline Co., Ltd](https://www.ppln.co)** · Cybersecurity SaaS · Mar 2023 – present
-
-- **Team Lead, Software Engineering** · Aug 2026 – present<br>Lead and mentor an engineering team. Own sprint planning, code review standards and architecture decisions on API contracts, data models and service boundaries, and still ship critical-path features in Python, Django, React, Next.js and TypeScript.
-- **Software Engineer** · Jul 2025 – Aug 2026<br>Designed API-first microservices in Node.js (Express) and Python (Django, Flask) with JWT authentication and role-based access control. Built real-time pipelines on Kafka and WebSockets and optimised schemas across PostgreSQL and MongoDB. Mentored junior developers and led code reviews.
-- **Frontend Developer** · Mar 2023 – Jul 2025<br>Built React, Next.js and TypeScript applications from Figma designs, covered by Cypress end-to-end tests and deployed to AWS through GitHub Actions.
-
-## Featured work
+## 📊 GitHub activity
 
 <p align="center">
-  <a href="https://imranhc0.vercel.app/projects/risk-sensor"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/readme/card-risksensor-dark.svg" /><img src=".github/readme/card-risksensor-light.svg" width="49%" alt="RiskSensor case study: external attack-surface and supply-chain risk platform. Backend architecture and full-stack, with Django, Express, Go, PostgreSQL and Pinecone." /></picture></a>
-  <a href="https://imranhc0.vercel.app/projects/threatidr"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/readme/card-threatidr-dark.svg" /><img src=".github/readme/card-threatidr-light.svg" width="49%" alt="ThreatIDR case study: blocks malware, phishing and C2 at the DNS layer, before connection. Backend engineer, with Flask, Celery, TimescaleDB and WebSockets." /></picture></a>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=imranhc0&show_icons=true&hide_border=true&border_radius=10&include_all_commits=true&count_private=true&rank_icon=github&hide=issues,contribs&bg_color=0D1117&title_color=85A6FF&icon_color=85A6FF&text_color=C9D1D9&ring_color=85A6FF" />
+    <img src="https://github-readme-stats.vercel.app/api?username=imranhc0&show_icons=true&hide_border=true&border_radius=10&include_all_commits=true&count_private=true&rank_icon=github&hide=issues,contribs&bg_color=F6F8FA&title_color=1B3CE3&icon_color=1B3CE3&text_color=1F2328&ring_color=1B3CE3" height="165" alt="GitHub stats for imranhc0" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=imranhc0&hide_border=true&border_radius=10&theme=github-dark-blue" />
+    <img src="https://streak-stats.demolab.com?user=imranhc0&hide_border=true&border_radius=10&background=F6F8FA&ring=1B3CE3&fire=1B3CE3&currStreakLabel=1B3CE3&sideNums=1F2328&currStreakNum=1F2328&sideLabels=1F2328&dates=57606A&stroke=D0D7DE" height="165" alt="GitHub contribution streak for imranhc0" />
+  </picture>
 </p>
 
-- **RiskSensor** · Architected the backend in Django, Express and Go, with data models on PostgreSQL, DynamoDB and Pinecone (vector search). [Product](https://www.ppln.co/risksensor) · [Case study](https://imranhc0.vercel.app/projects/risk-sensor)
-- **ThreatIDR** · Backend in Flask and Celery, live threat monitoring over WebSockets, time-series storage in TimescaleDB. [Product](https://www.ppln.co/threatidr) · [Case study](https://imranhc0.vercel.app/projects/threatidr)
-- **This portfolio** · Statically generated Next.js site with a markdown blog, Lighthouse 98–100 on mobile, no database, no tracking. [Live](https://imranhc0.vercel.app) · [Source](https://github.com/imranhc0/imranhc0)
+## ✍️ Writing
 
-## Tech stack
+- [Designing API-First Security Products](https://imranhc0.vercel.app/blog/designing-api-first-security-products): structuring microservices and contracts for high-risk domains
+- [CI/CD Pipelines That Actually Reduce Risk](https://imranhc0.vercel.app/blog/ci-cd-pipelines-that-actually-reduce-risk): building rollback, validation and traceability into delivery
 
-| Area | Tools |
-|---|---|
-| Languages | TypeScript, JavaScript, Python, Go |
-| Backend | Node.js, Express, Django, Flask, Gin, REST APIs, microservices |
-| Events and real-time | Kafka, WebSockets, Celery |
-| Data | PostgreSQL, TimescaleDB, MongoDB, DynamoDB, Redis, Pinecone, Prisma |
-| Frontend | React, Next.js, Redux, Zustand, Tailwind CSS, MUI |
-| Security | JWT, RBAC, Zod validation, DNS security |
-| Testing and delivery | Cypress, Docker, GitHub Actions, AWS |
+## 📫 Let's talk
 
-## Writing
+Hiring in Europe? Email **[imranhosein.cse@gmail.com](mailto:imranhosein.cse@gmail.com)**, message me on [LinkedIn](https://www.linkedin.com/in/imranhc0/), or [download my CV](https://imranhc0.vercel.app/resume.pdf).
 
-- [Designing API-First Security Products](https://imranhc0.vercel.app/blog/designing-api-first-security-products): structuring microservices and contracts for high-risk domains.
-- [CI/CD Pipelines That Actually Reduce Risk](https://imranhc0.vercel.app/blog/ci-cd-pipelines-that-actually-reduce-risk): building rollback, validation and traceability into delivery.
-
-<br />
-
-<a href="mailto:imranhosein.cse@gmail.com"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/readme/contact-dark.svg" />
-  <img src=".github/readme/contact-light.svg" width="100%" alt="Hiring in Europe? Let's talk. Email imranhosein.cse@gmail.com. Based in Dhaka, Bangladesh (UTC+6), open to relocation or remote work. References on request." />
-</picture></a>
-
-<p align="center"><sub>Email <a href="mailto:imranhosein.cse@gmail.com">imranhosein.cse@gmail.com</a> · <a href="https://www.linkedin.com/in/imranhc0/">LinkedIn</a> · <a href="https://imranhc0.vercel.app">imranhc0.vercel.app</a></sub></p>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7C4DFF,100:1B3CE3&height=110&section=footer" width="100%" alt="" />
