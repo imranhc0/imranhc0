@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/json-ld";
 import { getProject, getProjects } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
+import { breadcrumbs, pageMetadata, personId } from "@/lib/metadata";
+import { profile, siteUrl } from "@/lib/profile";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -18,12 +21,11 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const project = getProject((await params).slug);
   if (!project) return {};
 
-  return {
-    title: project.title,
+  return pageMetadata({
+    title: `${project.title}: case study`,
     description: project.summary,
-    alternates: { canonical: `/projects/${project.slug}` },
-    openGraph: { title: project.title, description: project.summary },
-  };
+    path: `/projects/${project.slug}`,
+  });
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
@@ -42,8 +44,34 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     ["Period", project.period],
   ].filter((fact): fact is [string, string] => Boolean(fact[1]));
 
+  const url = `${siteUrl}/projects/${project.slug}`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": `${url}#article`,
+        headline: `${project.title}: case study`,
+        description: project.summary,
+        author: { "@type": "Person", "@id": personId, name: profile.name, url: siteUrl },
+        mainEntityOfPage: url,
+        url,
+        image: `${url}/opengraph-image`,
+        inLanguage: "en-GB",
+        about: project.domain,
+        keywords: project.stack.join(", "),
+      },
+      breadcrumbs([
+        { name: "Home", path: "/" },
+        { name: "Work", path: "/projects" },
+        { name: project.title, path: `/projects/${project.slug}` },
+      ]),
+    ],
+  };
+
   return (
     <article className="wrap pt-12 pb-24 md:pt-20">
+      <JsonLd data={structuredData} />
       <Link href="/projects" className="group t-meta inline-flex gap-2 text-ink hover:text-accent">
         <span className="arrow rotate-180">→</span> Work
       </Link>
@@ -79,7 +107,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <div className="mt-8 flex flex-col gap-2">
                 {project.live ? (
                   <a href={project.live} className="link">
-                    Live site ↗
+                    Website ↗
                   </a>
                 ) : null}
                 {project.repo ? (

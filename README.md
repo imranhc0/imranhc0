@@ -62,8 +62,8 @@
 
 ## Featured Work
 
-- **ThreatIDR**: DNS Firewall + Threat IDR platform for enterprise security.
-- **Risk Sensor**: Real-time cyber threat intelligence SaaS with analytics dashboard.
+- **[ThreatIDR](https://www.ppln.co/threatidr)**: DNS security platform that blocks malware, phishing and C2 traffic before a connection is made.
+- **[RiskSensor](https://www.ppln.co/risksensor)**: External attack-surface and supply-chain risk visibility platform.
 - **Portfolio Platform**: statically generated Next.js portfolio with a markdown-driven blog and case studies.
 
 ## GitHub Analytics

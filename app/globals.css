@@ -331,6 +331,10 @@
     margin-top: 1.25em;
   }
 
+  .prose > :first-child {
+    margin-top: 0;
+  }
+
   .prose h2 {
     margin-top: 2em;
     font-size: clamp(1.45rem, 1.2rem + 0.8vw, 1.875rem);

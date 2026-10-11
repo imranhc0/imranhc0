@@ -6,10 +6,11 @@ export const profile = {
   role: "Full-Stack Engineer & Team Lead",
   currentTitle: "Team Lead, Software Engineering",
   company: "Pipeline Co., Ltd",
+  companyUrl: "https://www.ppln.co",
   headline:
     "Full-stack engineer and team lead building cybersecurity SaaS: API-first microservices in Python and Node.js, real-time pipelines on Kafka and WebSockets, and the React and Next.js interfaces on top.",
   description:
-    "Full-stack engineer and team lead building cybersecurity SaaS: microservices, event-driven systems and real-time threat-intelligence platforms. Based in Dhaka, open to roles in Europe.",
+    "Full-stack engineer and team lead building cybersecurity SaaS: microservices, event-driven systems and real-time threat intelligence. Open to roles in Europe.",
   location: "Dhaka, Bangladesh",
   timezone: "Asia/Dhaka",
   utcOffset: "UTC+6",
@@ -74,6 +75,7 @@ export interface Role {
 
 export interface Employer {
   company: string;
+  url: string;
   sector: string;
   start: string;
   roles: Role[];
@@ -82,7 +84,8 @@ export interface Employer {
 export const experience: Employer[] = [
   {
     company: "Pipeline Co., Ltd",
-    sector: "Cybersecurity SaaS",
+    url: "https://www.ppln.co",
+    sector: "Cyber intelligence, Japan",
     start: "2023-03-01",
     roles: [
       {
@@ -117,7 +120,7 @@ export const experience: Employer[] = [
         title: "Software Engineer",
         start: "2025-07-01",
         end: "2026-08-01",
-        location: "Tokyo, Japan · Remote",
+        location: "Dhaka, Bangladesh · Remote",
         highlights: [
           {
             area: "Microservices",
@@ -145,7 +148,7 @@ export const experience: Employer[] = [
         title: "Frontend Developer",
         start: "2023-03-01",
         end: "2025-07-01",
-        location: "Remote",
+        location: "Dhaka, Bangladesh · Remote",
         highlights: [
           {
             area: "Frontend",
