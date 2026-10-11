@@ -1,6 +1,6 @@
 <h1 align="center">Md Imran Hossen</h1>
 <p align="center">
-  <b>Software Engineer</b> · Full-Stack · Security SaaS · API-First Systems
+  <b>Full-Stack Engineer &amp; Team Lead</b> · Security SaaS · API-First Systems
 </p>
 
 <p align="center">
@@ -11,7 +11,7 @@
 
 ## About Me
 
-- Software Engineer with 3+ years of hands-on experience building production-grade web applications.
+- Full-stack engineer and team lead with 3.5+ years of experience building production-grade security SaaS.
 - Focused on backend architecture, secure authentication, event-driven systems, and responsive frontend delivery.
 - Experienced in cyber security SaaS products and real-time threat intelligence platforms.
 - I enjoy writing clean APIs, improving developer velocity, and shipping reliable releases through CI/CD.
@@ -64,7 +64,7 @@
 
 - **ThreatIDR**: DNS Firewall + Threat IDR platform for enterprise security.
 - **Risk Sensor**: Real-time cyber threat intelligence SaaS with analytics dashboard.
-- **Portfolio Platform**: Next.js + Supabase portfolio with publishable projects/blog admin dashboard.
+- **Portfolio Platform**: statically generated Next.js portfolio with a markdown-driven blog and case studies.
 
 ## GitHub Analytics
 
@@ -82,6 +82,7 @@
 <p>
   <a href="mailto:imranhosein.cse@gmail.com"><img src="https://img.shields.io/badge/Email-imranhosein.cse%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
   <a href="https://www.linkedin.com/in/imranhc0/"><img src="https://img.shields.io/badge/LinkedIn-imranhc0-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://imranhc0.vercel.app"><img src="https://img.shields.io/badge/Portfolio-imranhc0.vercel.app-1B3CE3?style=for-the-badge&logo=vercel&logoColor=white" /></a>
 </p>
 
 ---
